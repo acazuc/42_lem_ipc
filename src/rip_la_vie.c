@@ -2,6 +2,19 @@
 
 t_env	g_env;
 
+static void	exit_youhou()
+{
+	int	i;
+
+	display();
+	i = 0;
+	while (i < MAP_HEIGHT + 4)
+	{
+		printf("\n\033[0m");
+		++i;
+	}
+}
+
 static void	check_team(int *teams, int team)
 {
 	int	i;
@@ -11,9 +24,11 @@ static void	check_team(int *teams, int team)
 	{
 		if (teams[i] == team)
 		{
+			exit_youhou();
 			cleanup();
 			exit(EXIT_SUCCESS);
 		}
+		++i;
 	}
 	teams[i] = team;
 }
