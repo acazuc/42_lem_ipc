@@ -41,6 +41,6 @@ int 		main(int ac, char **av)
 		action();
 		display();
 		semunlock();
-		usleep(10000);
+		usleep(100000);
 	}
 }

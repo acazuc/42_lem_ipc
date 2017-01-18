@@ -13,7 +13,7 @@ void	semlock()
 	semops[0].sem_flg = 0;
 	semops[1].sem_num = 0;
 	semops[1].sem_op = 1;
-	semops[1].sem_flg = SEM_UNDO;
+	semops[1].sem_flg = 0;
 	if (semop(g_env.sem, semops, 2) == -1)
 		ERROR("semop() failed (lock)");
 	g_env.locked = 1;
