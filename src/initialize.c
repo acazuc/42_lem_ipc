@@ -30,7 +30,6 @@ static void	les_signaux_sont_desormais_tous_attrape()
 	signal(SIGUSR2, &olalajesuisunmechansignal);
 	signal(SIGCHLD, &olalajesuisunmechansignal);
 	signal(SIGBUS, &olalajesuisunmechansignal);
-	signal(SIGPOLL, &olalajesuisunmechansignal);
 	signal(SIGPROF, &olalajesuisunmechansignal);
 	signal(SIGSYS, &olalajesuisunmechansignal);
 	signal(SIGTRAP, &olalajesuisunmechansignal);

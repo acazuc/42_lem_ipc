@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 14:24:00 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/16 17:34:25 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/01/22 12:25:13 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	cleanup()
 {
 	if (g_env.shm <= 0 || !g_env.map || g_env.map == (void*)-1)
 		return ;
+	semlock();
 	if (g_env.map->players_count > 1)
 	{
 		g_env.map->map[g_env.player_y][g_env.player_x].team = 0;
@@ -51,7 +52,7 @@ void	error_quit(char *error_message, char *file, int line)
 	ft_putnbr_fd(line, 2);
 	ft_putchar_fd(')', 2);
 	ft_putchar_fd('\n', 2);
-	ft_putstr_fd("\033[0;0m", 2);
+	ft_putstr_fd("\033[0m", 2);
 	cleanup();
 	exit(EXIT_FAILURE);
 }
