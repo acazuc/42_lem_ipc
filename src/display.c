@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   display.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/26 07:29:07 by acazuc            #+#    #+#             */
+/*   Updated: 2017/02/26 07:31:09 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_ipc.h"
 
 t_env	g_env;
 
-static void	print_map()
+static void	print_map(void)
 {
 	int	x;
 	int	y;
@@ -14,7 +26,8 @@ static void	print_map()
 		while (x < MAP_WIDTH)
 		{
 			if (g_env.map->map[y][x].team)
-				printf("\033[1;3%dm %d", g_env.map->map[y][x].team % 7, g_env.map->map[y][x].team);
+				printf("\033[1;3%dm %d", g_env.map->map[y][x].team % 7
+						, g_env.map->map[y][x].team);
 			else
 				printf("\033[1;37m .");
 			++x;
@@ -24,7 +37,7 @@ static void	print_map()
 	}
 }
 
-void 		display()
+void		display(void)
 {
 	int	i;
 

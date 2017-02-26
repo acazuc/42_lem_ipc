@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   catch_enemy.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/26 07:28:59 by acazuc            #+#    #+#             */
+/*   Updated: 2017/02/26 07:30:11 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_ipc.h"
 
 t_env	g_env;
 
-static int	has_buddy()
+static int	has_buddy(void)
 {
 	int	y;
 	int	x;
@@ -24,7 +36,7 @@ static int	has_buddy()
 	return (i >= 2);
 }
 
-int		catch_enemy()
+int			catch_enemy(void)
 {
 	if (!has_buddy())
 	{

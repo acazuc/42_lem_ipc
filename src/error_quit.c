@@ -6,7 +6,7 @@
 /*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 14:24:00 by acazuc            #+#    #+#             */
-/*   Updated: 2017/01/22 12:25:13 by acazuc           ###   ########.fr       */
+/*   Updated: 2017/02/26 07:32:00 by acazuc           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_env	g_env;
 
-void	cleanup()
+void	cleanup(void)
 {
 	if (g_env.shm <= 0 || !g_env.map || g_env.map == (void*)-1)
 		return ;

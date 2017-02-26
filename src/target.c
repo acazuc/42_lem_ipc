@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   target.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/26 07:29:37 by acazuc            #+#    #+#             */
+/*   Updated: 2017/02/26 07:42:37 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_ipc.h"
 
 t_env	g_env;
 
-void	target_check()
+void	target_check(void)
 {
 	int	x;
 	int	y;
@@ -24,7 +36,7 @@ void	target_check()
 	g_env.target = 0;
 }
 
-void	target_find()
+void	target_find(void)
 {
 	int	x;
 	int	y;
@@ -50,7 +62,7 @@ void	target_find()
 	g_env.target = 0;
 }
 
-void	target_search()
+void	target_search(void)
 {
 	int	y;
 	int	x;
@@ -61,7 +73,8 @@ void	target_search()
 		x = 0;
 		while (x < MAP_WIDTH)
 		{
-			if (g_env.map->map[y][x].team && g_env.map->map[y][x].team != g_env.team)
+			if (g_env.map->map[y][x].team && g_env.map->map[y][x].team
+					!= g_env.team)
 			{
 				g_env.target = g_env.map->map[y][x].player;
 				return ;
@@ -72,11 +85,11 @@ void	target_search()
 	}
 }
 
-void	target_send()
+void	target_send(void)
 {
 	t_msg	msg;
-	int	y;
-	int	x;
+	int		y;
+	int		x;
 
 	msg.target = g_env.target;
 	y = 0;
@@ -88,7 +101,8 @@ void	target_send()
 			if (g_env.map->map[y][x].team == g_env.team)
 			{
 				msg.player = g_env.map->map[y][x].player;
-				if (msgsnd(g_env.msgq, &msg, sizeof(msg) - sizeof(long), IPC_NOWAIT) == -1 && errno != EAGAIN)
+				if (msgsnd(g_env.msgq, &msg, sizeof(msg) - sizeof(long)
+							, IPC_NOWAIT) == -1 && errno != EAGAIN)
 					ERROR("msgsng() failed");
 			}
 			++x;
@@ -97,11 +111,12 @@ void	target_send()
 	}
 }
 
-void	target_receive()
+void	target_receive(void)
 {
 	t_msg	msg;
 
-	if (msgrcv(g_env.msgq, &msg, sizeof(msg) - sizeof(long), g_env.player_id, IPC_NOWAIT) == -1)
+	if (msgrcv(g_env.msgq, &msg, sizeof(msg) - sizeof(long), g_env.player_id
+				, IPC_NOWAIT) == -1)
 	{
 		if (errno != EAGAIN && errno != ENOMSG)
 			ERROR("msgrcv() failed");

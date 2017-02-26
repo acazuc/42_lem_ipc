@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rip_la_vie.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/26 07:29:29 by acazuc            #+#    #+#             */
+/*   Updated: 2017/02/26 07:41:46 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_ipc.h"
 
 t_env	g_env;
 
-static void	exit_youhou()
+static void	exit_youhou(void)
 {
 	int	i;
 
@@ -39,10 +51,11 @@ static void	do_check(int *teams, int x, int y)
 		|| g_env.player_x + x < 0 || g_env.player_x + x > MAP_WIDTH - 1)
 		return ;
 	if (g_env.map->map[g_env.player_y + y][g_env.player_x + x].team)
-		check_team(teams, g_env.map->map[g_env.player_y + y][g_env.player_x + x].team);
+		check_team(teams, g_env.map->map[g_env.player_y + y]
+				[g_env.player_x + x].team);
 }
 
-void		 check_la_vie_c_est_nul()
+void		check_la_vie_c_est_nul(void)
 {
 	int	teams[9];
 

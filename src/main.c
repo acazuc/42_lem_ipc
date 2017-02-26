@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/26 07:29:22 by acazuc            #+#    #+#             */
+/*   Updated: 2017/02/26 07:54:05 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_ipc.h"
 
-t_env	g_env = {};
+t_env	g_env = {NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, NULL};
 
-static void	place_player()
+static void	place_player(void)
 {
 	while (1)
 	{
@@ -10,14 +22,15 @@ static void	place_player()
 		g_env.player_y = rand() / (float)RAND_MAX * MAP_HEIGHT;
 		if (!g_env.map->map[g_env.player_y][g_env.player_x].player)
 		{
-			g_env.map->map[g_env.player_y][g_env.player_x].player = g_env.player_id;
+			g_env.map->map[g_env.player_y][g_env.player_x]
+				.player = g_env.player_id;
 			g_env.map->map[g_env.player_y][g_env.player_x].team = g_env.team;
-			break;
+			break ;
 		}
 	}
 }
 
-int 		main(int ac, char **av)
+int			main(int ac, char **av)
 {
 	ft_memset(&g_env, 0, sizeof(g_env));
 	g_env.file = av[0];

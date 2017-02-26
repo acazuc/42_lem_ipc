@@ -1,44 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initialize.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: acazuc <acazuc@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/02/26 07:29:19 by acazuc            #+#    #+#             */
+/*   Updated: 2017/02/26 07:42:52 by acazuc           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_ipc.h"
 
 t_env	g_env;
 
-static void	olalajesuisunmechansignal(int sig)
+static void	olalajesuisunmechantsignal(int sig)
 {
 	(void)sig;
 	ERROR("signal caught");
 }
 
-static void	olalajesuisunmechansignaldetypeinterrupt(int sig)
+static void	olalajesuisunmechantsignaldetypeinterrupt(int sig)
 {
 	(void)sig;
 	ERROR("Interrupt");
 }
 
-static void	les_signaux_sont_desormais_tous_attrape()
+static void	les_signaux_sont_desormais_tous_attrape_pokemon(void)
 {
-	signal(SIGHUP, &olalajesuisunmechansignal);
-	signal(SIGINT, &olalajesuisunmechansignaldetypeinterrupt);
-	signal(SIGQUIT, &olalajesuisunmechansignal);
-	signal(SIGILL, &olalajesuisunmechansignal);
-	signal(SIGABRT, &olalajesuisunmechansignal);
-	signal(SIGFPE, &olalajesuisunmechansignal);
-	signal(SIGSEGV, &olalajesuisunmechansignal);
-	signal(SIGPIPE, &olalajesuisunmechansignal);
-	signal(SIGALRM, &olalajesuisunmechansignal);
-	signal(SIGTERM, &olalajesuisunmechansignal);
-	signal(SIGUSR1, &olalajesuisunmechansignal);
-	signal(SIGUSR2, &olalajesuisunmechansignal);
-	signal(SIGCHLD, &olalajesuisunmechansignal);
-	signal(SIGBUS, &olalajesuisunmechansignal);
-	signal(SIGPROF, &olalajesuisunmechansignal);
-	signal(SIGSYS, &olalajesuisunmechansignal);
-	signal(SIGTRAP, &olalajesuisunmechansignal);
-	signal(SIGVTALRM, &olalajesuisunmechansignal);
-	signal(SIGXCPU, &olalajesuisunmechansignal);
-	signal(SIGXFSZ, &olalajesuisunmechansignal);
+	signal(SIGHUP, &olalajesuisunmechantsignal);
+	signal(SIGINT, &olalajesuisunmechantsignaldetypeinterrupt);
+	signal(SIGQUIT, &olalajesuisunmechantsignal);
+	signal(SIGILL, &olalajesuisunmechantsignal);
+	signal(SIGABRT, &olalajesuisunmechantsignal);
+	signal(SIGFPE, &olalajesuisunmechantsignal);
+	signal(SIGSEGV, &olalajesuisunmechantsignal);
+	signal(SIGPIPE, &olalajesuisunmechantsignal);
+	signal(SIGALRM, &olalajesuisunmechantsignal);
+	signal(SIGTERM, &olalajesuisunmechantsignal);
+	signal(SIGUSR1, &olalajesuisunmechantsignal);
+	signal(SIGUSR2, &olalajesuisunmechantsignal);
+	signal(SIGCHLD, &olalajesuisunmechantsignal);
+	signal(SIGBUS, &olalajesuisunmechantsignal);
+	signal(SIGPROF, &olalajesuisunmechantsignal);
+	signal(SIGSYS, &olalajesuisunmechantsignal);
+	signal(SIGTRAP, &olalajesuisunmechantsignal);
+	signal(SIGVTALRM, &olalajesuisunmechantsignal);
+	signal(SIGXCPU, &olalajesuisunmechantsignal);
+	signal(SIGXFSZ, &olalajesuisunmechantsignal);
 }
 
-void	initialize()
+void		initialize(void)
 {
 	key_t	key;
 
@@ -51,5 +63,5 @@ void	initialize()
 		ERROR("semget() failed");
 	if ((g_env.msgq = msgget(key, IPC_CREAT | 0666)) == -1)
 		ERROR("msgget failed");
-	les_signaux_sont_desormais_tous_attrape();
+	les_signaux_sont_desormais_tous_attrape_pokemon();
 }
